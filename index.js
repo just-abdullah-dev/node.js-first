@@ -42,6 +42,7 @@ console.log('I am firstly printed');
 /*--------------------------------------------------------------------*/
 
 const http = require('http');
+require('dotenv').config();
 
 const port = process.env.PORT || 3000; // Default to port 3000 if PORT is not set
 
