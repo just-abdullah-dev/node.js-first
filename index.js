@@ -41,21 +41,28 @@ console.log('I am firstly printed');
 // const path = require('path')
 /*--------------------------------------------------------------------*/
 
-const http = require('http')
+const http = require('http');
 
-const port = process.env.PORT;
+const port = process.env.PORT || 3000; // Default to port 3000 if PORT is not set
 
-const server = http.createServer((req,res)=>{
-    if(req.url === '/' || req.url === '/home'){
-        return res.end('<h1><b>HOME PAGE</b></h1>')
-    }else if(req.url === '/services'){
-        return res.end('<h1><b>SERVICES PAGE</b></h1>')
-    }else if(req.url === '/about'){
-        return res.end('<h1><b>ABOUT PAGE</b></h1>')
-    }else{
-        return res.end('<h1><b>404 Error Page NOT Found</b></h1>')
+const server = http.createServer((req, res) => {
+    if (req.url === '/' || req.url === '/home') {
+        res.setHeader('Content-Type', 'text/html');
+        res.end('<h1><b>HOME PAGE</b></h1>');
+    } else if (req.url === '/services') {
+        res.setHeader('Content-Type', 'text/html');
+        res.end('<h1><b>SERVICES PAGE</b></h1>');
+    } else if (req.url === '/about') {
+        res.setHeader('Content-Type', 'text/html');
+        res.end('<h1><b>ABOUT PAGE</b></h1>');
+    } else {
+        res.statusCode = 404;
+        res.setHeader('Content-Type', 'text/html');
+        res.end('<h1><b>404 Error Page NOT Found</b></h1>');
     }
-})
-server.listen(port,() => {
-    console.log('Every thing is okay. Server is live.');
-})
+});
+
+server.listen(port, () => {
+    console.log('Everything is okay. Server is live.');
+});
+
